@@ -155,10 +155,12 @@ def detect_onet(onet, image, bboxes, device):
     return bboxes
 
 if __name__ == '__main__':
+    winName = 'LPR'
+    cv2.namedWindow(winName, cv2.WINDOW_NORMAL)
 
     parser = argparse.ArgumentParser(description='MTCNN Demo')
     parser.add_argument("--test_image", dest='test_image', help=
-    "test image path", default="test/28.jpg", type=str)
+    "test image path", default="input/50.jpeg", type=str)
     parser.add_argument("--scale", dest='scale', help=
     "scale the iamge", default=1, type=int)
     parser.add_argument('--mini_lp', dest='mini_lp', help=
@@ -182,6 +184,6 @@ if __name__ == '__main__':
         cv2.rectangle(image, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 0, 255), 2)
         
     image = cv2.resize(image, (0, 0), fx = 1/args.scale, fy = 1/args.scale, interpolation=cv2.INTER_CUBIC)
-    cv2.imshow('image', image)
+    cv2.imshow(winName, image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
